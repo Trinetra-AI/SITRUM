@@ -2,7 +2,6 @@ from pathlib import Path
 import pandas as pd
 import yfinance as yf
 
-
 BASE_DIR = Path(__file__).resolve().parent
 RAW_DIR = BASE_DIR / "data" / "raw"
 RAW_DIR.mkdir(parents=True, exist_ok=True)
@@ -55,12 +54,24 @@ def fetch_gold_data():
     ticker = "GC=F"
 
     # 15-minute data (recent intraday)
-    df_15m = yf.download(ticker, interval="15m", period="60d", auto_adjust=False, progress=False)
+    df_15m = yf.download(
+        ticker,
+        interval="15m",
+        period="60d",
+        auto_adjust=False,
+        progress=False
+    )
     df_15m = normalize_ohlc(df_15m)
     save_csv(df_15m, "xauusd_15m.csv")
 
     # 1-hour data
-    df_1h = yf.download(ticker, interval="60m", period="730d", auto_adjust=False, progress=False)
+    df_1h = yf.download(
+        ticker,
+        interval="60m",
+        period="730d",
+        auto_adjust=False,
+        progress=False
+    )
     df_1h = normalize_ohlc(df_1h)
     save_csv(df_1h, "xauusd_1h.csv")
 

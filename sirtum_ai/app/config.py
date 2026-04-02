@@ -1,5 +1,4 @@
 # app/config.py
-
 from pathlib import Path
 
 # =========================
@@ -10,6 +9,12 @@ DATA_DIR = BASE_DIR / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 EVENTS_DIR = DATA_DIR / "events"
 MODELS_DIR = DATA_DIR / "models"
+
+# Ensure folders exist
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
+EVENTS_DIR.mkdir(parents=True, exist_ok=True)
+MODELS_DIR.mkdir(parents=True, exist_ok=True)
 
 # =========================
 # FILE PATHS
@@ -79,7 +84,6 @@ STRONG_RSI_BULL = 55
 STRONG_RSI_BEAR = 45
 WEAK_RSI_UPPER = 52
 WEAK_RSI_LOWER = 48
-
 STRONG_BODY_RATIO = 0.6
 WEAK_BODY_RATIO = 0.3
 
@@ -95,7 +99,9 @@ NEW_YORK_SESSION = (13, 22)
 # =========================
 MACRO_BLOCK_MINUTES_BEFORE = 60
 MACRO_BLOCK_MINUTES_AFTER = 30
-HIGH_IMPACT_EVENTS = {"CPI", "NFP", "FOMC", "FED", "POWELL", "PCE", "GDP", "CPI m/m", "CPI y/y"}
+HIGH_IMPACT_EVENTS = {
+    "CPI", "NFP", "FOMC", "FED", "POWELL", "PCE", "GDP", "CPI m/m", "CPI y/y"
+}
 
 # =========================
 # RISK / REWARD SETTINGS
@@ -111,7 +117,6 @@ MIN_STOP_ATR = 0.4
 MIN_CONFIDENCE_FOR_SIGNAL = 60
 STRONG_SIGNAL_CONFIDENCE = 75
 
-# Score weights
 WEIGHT_HTF_TREND = 20
 WEIGHT_MTF_ALIGNMENT = 15
 WEIGHT_STRUCTURE = 20
